@@ -4,67 +4,86 @@
 <head>
     <meta charset="UTF-8" />
     <title>Nosso Amor | Ana & Bruna</title>
-
-    <!-- Estilos principais -->
     <link rel="stylesheet" href="style.css" />
 </head>
 
+<!-- Modal da Galeria -->
+<div id="modal-galeria" class="modal-galeria">
+    <span class="fechar" onclick="fecharModal()">&times;</span>
+    <img class="modal-conteudo" id="imagem-modal">
+</div>
+
 <body>
-    <!-- Canvas para os fogos -->
     <canvas id="fogos-canvas"></canvas>
 
-    <!-- Cabeçalho com título e contador de tempo juntos -->
-    <header>
+    <header class="fade-in">
         <h1>Amô</h1>
         <h2>Ana Paula Liick ❤️ Bruna Maria Silveira Piveta</h2>
         <div class="contador" id="contador"></div>
     </header>
 
-    <!-- Carrossel de Mensagens de Amor -->
-    <section class="mensagem">
+    <section class="mensagem fade-in">
         <div class="carrossel">
-            <!-- Setas para navegar entre mensagens -->
             <div class="setas">
                 <div class="seta" onclick="navegarMensagem(-1)">&#10094;</div>
                 <div class="titulo-carrossel">Minhas Declarações</div>
                 <div class="seta" onclick="navegarMensagem(1)">&#10095;</div>
             </div>
-            <!-- Texto da mensagem atual -->
             <p id="mensagem-texto"></p>
-            <!-- Bolinhas para navegação direta -->
             <div class="bolinhas" id="bolinhas-mensagem"></div>
+            <button class="botao-copiar" onclick="copiarMensagem()">Copiar Texto 💌</button>
         </div>
     </section>
 
-    <!-- Carrossel de Fotos -->
-    <section class="fotos-carrossel">
+    <section class="fotos-carrossel fade-in">
         <div class="setas">
             <div class="seta" onclick="navegarFoto(-1)">&#10094;</div>
             <div class="titulo-fotos">Fotos Preferidas</div>
             <div class="seta" onclick="navegarFoto(1)">&#10095;</div>
         </div>
-
         <div class="foto-container">
             <img id="foto-atual" src="foto1.jpeg" alt="Foto de Ana e Bruna" />
         </div>
         <div class="bolinhas" id="bolinhas-fotos"></div>
     </section>
 
-    <!-- Texto explicativo da playlist -->
-    <p class="playlist-texto">
-        Essa é a nossa playlist, com músicas que marcam a nossa história e que têm um pedacinho de nós em cada nota. Quero mantê-la sempre atualizada com as nossas canções, aquelas que nos lembram do quanto somos especiais uma para a outra. 💖
+    <p class="playlist-texto fade-in">
+        Essa é a nossa playlist, com músicas que marcam a nossa história e que têm um pedacinho de nós em cada nota.
+        Quero mantê-la sempre atualizada com as nossas canções, aquelas que nos lembram do quanto somos especiais uma
+        para a outra. 💖
     </p>
 
-    <!-- Playlist de música compartilhada no Spotify -->
-    <section class="spotify">
+    <section class="spotify fade-in">
         <iframe style="border-radius:12px"
             src="https://open.spotify.com/embed/playlist/2LnQq8lEUkYiVMQLVGH7VL?utm_source=generator" width="100%"
             height="380" frameborder="0" allowfullscreen=""
             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" loading="lazy"></iframe>
     </section>
 
-    <!-- Rodapé de crédito -->
-    <footer>
+    <section class="linha-do-tempo fade-in">
+        <h2>Nossa Linha do Tempo 💞</h2>
+        <div class="cards-linha-do-tempo">
+            <div class="card">
+                <img src="foto1.jpeg" alt="Primeiro aniversário">
+                <h3>15 de Fevereiro de 2025</h3>
+                <p>Seu primeiro aniversário, comigo podendo segurar sua mão. 💫</p>
+            </div>
+            <div class="card">
+                <img src="foto2.jpeg" alt="Primeira viagem">
+                <h3>23 de Fevereiro de 2025</h3>
+                <p>Nossa primeira viagem juntas com amigos, o início de algo mágico. ✈️</p>
+            </div>
+            <div class="card">
+                <img src="foto8.jpeg" alt="Primeiro emprego">
+                <h3>27 de Fevereiro de 2025</h3>
+                <p>Uma comemoração da minha primeira conquista(meu emprego). 🎉</p>
+            </div>
+            <!-- Adicione mais cards conforme desejar -->
+        </div>
+    </section>
+
+
+    <footer class="fade-in">
         Feito com amor 💗 por Ana
     </footer>
 
@@ -148,6 +167,27 @@
             indiceFoto = (indiceFoto + direcao + fotos.length) % fotos.length;
             mostrarFoto(indiceFoto);
         }
+
+        // Abrir modal ao clicar na imagem
+        const fotoAtual = document.getElementById("foto-atual");
+        const modal = document.getElementById("modal-galeria");
+        const imagemModal = document.getElementById("imagem-modal");
+
+        fotoAtual.addEventListener("click", () => {
+            imagemModal.src = fotos[indiceFoto];
+            modal.style.display = "block";
+        });
+
+        function fecharModal() {
+            modal.style.display = "none";
+        }
+
+        // Fechar ao clicar fora da imagem
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                fecharModal();
+            }
+        });
 
         // ======= 4. Função Genérica para Atualizar Bolinhas =======
         function atualizarBolinhas(lista, indiceAtual, container, callback) {
@@ -235,6 +275,16 @@
         // ======= 5. Inicialização =======
         mostrarMensagem(indiceMensagem);
         mostrarFoto(indiceFoto);
+
+    </script>
+
+    <script>
+        function copiarMensagem() {
+            const texto = document.getElementById("mensagem-texto").innerText;
+            navigator.clipboard.writeText(texto).then(() => {
+                alert("Texto copiado com sucesso! 💖");
+            });
+        }
     </script>
 </body>
 
