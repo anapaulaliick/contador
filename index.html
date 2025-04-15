@@ -2,152 +2,152 @@
 <html lang="pt-BR">
 
 <head>
-  <meta charset="UTF-8" />
-  <title>Nosso Amor | Ana & Bruna</title>
+    <meta charset="UTF-8" />
+    <title>Nosso Amor | Ana & Bruna</title>
 
-  <!-- Estilos principais -->
-  <link rel="stylesheet" href="style.css" />
+    <!-- Estilos principais -->
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <!-- Cabeçalho com título e contador de tempo juntos -->
-  <header>
-    <h1>Amô</h1>
-    <h2>Ana Paula Liick ❤️ Bruna Maria Silveira Piveta</h2>
-    <div class="contador" id="contador"></div>
-  </header>
+    <!-- Cabeçalho com título e contador de tempo juntos -->
+    <header>
+        <h1>Amô</h1>
+        <h2>Ana Paula Liick ❤️ Bruna Maria Silveira Piveta</h2>
+        <div class="contador" id="contador"></div>
+    </header>
 
-  <!-- Carrossel de Mensagens de Amor -->
-  <section class="mensagem">
-    <div class="carrossel">
-      <!-- Setas para navegar entre mensagens -->
-      <div class="setas">
-        <div class="seta" onclick="navegarMensagem(-1)">&#10094;</div>
-        <div class="seta" onclick="navegarMensagem(1)">&#10095;</div>
-      </div>
-      <!-- Texto da mensagem atual -->
-      <p id="mensagem-texto"></p>
-      <!-- Bolinhas para navegação direta -->
-      <div class="bolinhas" id="bolinhas-mensagem"></div>
-    </div>
-  </section>
+    <!-- Carrossel de Mensagens de Amor -->
+    <section class="mensagem">
+        <div class="carrossel">
+            <!-- Setas para navegar entre mensagens -->
+            <div class="setas">
+                <div class="seta" onclick="navegarMensagem(-1)">&#10094;</div>
+                <div class="seta" onclick="navegarMensagem(1)">&#10095;</div>
+            </div>
+            <!-- Texto da mensagem atual -->
+            <p id="mensagem-texto"></p>
+            <!-- Bolinhas para navegação direta -->
+            <div class="bolinhas" id="bolinhas-mensagem"></div>
+        </div>
+    </section>
 
-  <!-- Carrossel de Fotos -->
-  <section class="fotos-carrossel">
-    <div class="setas">
-      <div class="seta" onclick="navegarFoto(-1)">&#10094;</div>
-      <div class="seta" onclick="navegarFoto(1)">&#10095;</div>
-    </div>
-    <div class="foto-container">
-      <img id="foto-atual" src="foto1.jpeg" alt="Foto de Ana e Bruna" />
-    </div>
-    <div class="bolinhas" id="bolinhas-fotos"></div>
-  </section>
+    <!-- Carrossel de Fotos -->
+    <section class="fotos-carrossel">
+        <div class="setas">
+            <div class="seta" onclick="navegarFoto(-1)">&#10094;</div>
+            <div class="seta" onclick="navegarFoto(1)">&#10095;</div>
+        </div>
+        <div class="foto-container">
+            <img id="foto-atual" src="foto1.jpeg" alt="Foto de Ana e Bruna" />
+        </div>
+        <div class="bolinhas" id="bolinhas-fotos"></div>
+    </section>
 
-  <!-- Playlist de música compartilhada no Spotify -->
-  <section class="spotify">
-    <iframe style="border-radius:12px"
-      src="https://open.spotify.com/embed/playlist/2LnQq8lEUkYiVMQLVGH7VL?utm_source=generator" width="100%"
-      height="380" frameborder="0" allowfullscreen=""
-      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" loading="lazy"></iframe>
-  </section>
+    <!-- Playlist de música compartilhada no Spotify -->
+    <section class="spotify">
+        <iframe style="border-radius:12px"
+            src="https://open.spotify.com/embed/playlist/2LnQq8lEUkYiVMQLVGH7VL?utm_source=generator" width="100%"
+            height="380" frameborder="0" allowfullscreen=""
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" loading="lazy"></iframe>
+    </section>
 
-  <!-- Rodapé de crédito -->
-  <footer>
-    Feito com amor 💗 por Ana
-  </footer>
+    <!-- Rodapé de crédito -->
+    <footer>
+        Feito com amor 💗 por Ana
+    </footer>
 
-  <!-- Scripts -->
-  <script>
-    // ======= 1. Contador de Tempo Juntas =======
-    const dataInicio = new Date("2025-02-22T00:00:00");
+    <!-- Scripts -->
+    <script>
+        // ======= 1. Contador de Tempo Juntas =======
+        const dataInicio = new Date("2025-02-22T00:00:00");
 
-    function atualizarContador() {
-      const agora = new Date();
-      let anos = agora.getFullYear() - dataInicio.getFullYear();
-      let meses = agora.getMonth() - dataInicio.getMonth();
-      let dias = agora.getDate() - dataInicio.getDate();
+        function atualizarContador() {
+            const agora = new Date();
+            let anos = agora.getFullYear() - dataInicio.getFullYear();
+            let meses = agora.getMonth() - dataInicio.getMonth();
+            let dias = agora.getDate() - dataInicio.getDate();
 
-      // Ajuste para meses/dias negativos
-      if (dias < 0) {
-        meses--;
-        const ultimoDiaAnterior = new Date(agora.getFullYear(), agora.getMonth(), 0).getDate();
-        dias += ultimoDiaAnterior;
-      }
+            // Ajuste para meses/dias negativos
+            if (dias < 0) {
+                meses--;
+                const ultimoDiaAnterior = new Date(agora.getFullYear(), agora.getMonth(), 0).getDate();
+                dias += ultimoDiaAnterior;
+            }
 
-      if (meses < 0) {
-        anos--;
-        meses += 12;
-      }
+            if (meses < 0) {
+                anos--;
+                meses += 12;
+            }
 
-      document.getElementById("contador").innerText =
-        `Estamos juntas há ${anos} ano(s), ${meses} mês(es), ${dias} dia(s) 💕`;
-    }
+            document.getElementById("contador").innerText =
+                `Estamos juntas há ${anos} ano(s), ${meses} mês(es), ${dias} dia(s) 💕`;
+        }
 
-    setInterval(atualizarContador, 1000);
-    atualizarContador();
+        setInterval(atualizarContador, 1000);
+        atualizarContador();
 
-    // ======= 2. Carrossel de Mensagens =======
-    const mensagens = [
-      "Nosso amor é feito de momentos simples, sorrisos sinceros e abraços que falam mais que palavras. Cada segundo ao seu lado faz tudo valer a pena. Que esse tempo só continue crescendo, assim como o nosso amô. 💞",
-      "Te amo mais do que palavras podem dizer. Você é meu lar, meu mundo, meu tudo. 💖",
-      "A cada dia que passa, tenho mais certeza que você é o amor da minha vida. 🌟",
-      // Adicione novas mensagens aqui
-    ];
+        // ======= 2. Carrossel de Mensagens =======
+        const mensagens = [
+            "Sabia que eu me perco nos seus olhos? Não costumo gostar muito de olhar nos olhos, mas os seus são como um ímã que sempre atrai os meus. E eu me perco neles... É como se houvesse uma imensidão por trás deles que eu ainda não descobri, mas na qual eu quero muito mergulhar.\n\nNunca gostei muito de carinho, mas quando você me toca, é como se meu corpo implorasse para que você nunca mais pare. Nunca fui muito de fazer carinho, mas as minhas mãos te procuram involuntariamente.\n\nQuando você me abraça, parece que o mundo pode literalmente acabar, e tudo o que me importa é você.\n\nVocê é tão especial, Bruna. Não sei se você tem noção disso. A forma como as pessoas à sua volta se importam com você, te amam e estão do seu lado só mostra o quão especial você é para todos — e isso não é à toa. Você trata bem demais todos que estão por perto, você cuida de todos com carinho genuíno, e isso só mostra o quanto o seu coração é bom e puro.\n\nVocê dá sempre o melhor de si em tudo o que faz, e isso é só mais uma prova do quão incrível você é.\n\nVocê tem um caráter exemplar, tem valores excepcionais — e hoje em dia, essas qualidades se perdem facilmente. Sou feliz demais por você ser exatamente quem é.\n\nSou feliz demais por poder dizer que tenho você na minha vida, e por saber que você me ama e se importa tanto comigo quanto eu com você.\n\nVocê me encanta, Bruna. E a cada dia que eu descubro algo novo sobre você, quero descobrir ainda mais. Eu amo te entender e perceber o que ninguém mais vê, porque você esconde bem... mas eu sempre vou prestar atenção nos seus detalhes.\n\nSaiba que quem tem você na vida tem muita sorte, porque pessoas como você são raras. Nunca deixe que te façam pensar que você não é boa o suficiente ou que ser você é errado. Você é a melhor coisa na vida de todos à sua volta.\n\nTe amo. E obrigada por esse um mês em que você tem me permitido fazer parte de tudo na sua vida, minha futura namorada. 💞",
+            "Te amo mais do que palavras podem dizer. Você é meu lar, meu mundo, meu tudo. 💖",
+            "A cada dia que passa, tenho mais certeza que você é o amor da minha vida. 🌟",
+            // Adicione novas mensagens aqui
+        ];
 
-    let indiceMensagem = 0;
-    const textoMensagem = document.getElementById("mensagem-texto");
-    const bolinhasMensagem = document.getElementById("bolinhas-mensagem");
+        let indiceMensagem = 0;
+        const textoMensagem = document.getElementById("mensagem-texto");
+        const bolinhasMensagem = document.getElementById("bolinhas-mensagem");
 
-    function mostrarMensagem(index) {
-      indiceMensagem = index;
-      textoMensagem.innerText = mensagens[indiceMensagem];
-      atualizarBolinhas(mensagens, indiceMensagem, bolinhasMensagem, mostrarMensagem);
-    }
+        function mostrarMensagem(index) {
+            indiceMensagem = index;
+            textoMensagem.innerText = mensagens[indiceMensagem];
+            atualizarBolinhas(mensagens, indiceMensagem, bolinhasMensagem, mostrarMensagem);
+        }
 
-    function navegarMensagem(direcao) {
-      indiceMensagem = (indiceMensagem + direcao + mensagens.length) % mensagens.length;
-      mostrarMensagem(indiceMensagem);
-    }
+        function navegarMensagem(direcao) {
+            indiceMensagem = (indiceMensagem + direcao + mensagens.length) % mensagens.length;
+            mostrarMensagem(indiceMensagem);
+        }
 
-    // ======= 3. Carrossel de Fotos =======
-    const fotos = [
-      "foto1.jpeg",
-      "foto2.jpeg",
-      "foto3.jpeg",
-      // Adicione novas fotos aqui
-    ];
+        // ======= 3. Carrossel de Fotos =======
+        const fotos = [
+            "foto1.jpeg",
+            "foto2.jpeg",
+            "foto3.jpeg",
+            // Adicione novas fotos aqui
+        ];
 
-    let indiceFoto = 0;
-    const imgFoto = document.getElementById("foto-atual");
-    const bolinhasFotos = document.getElementById("bolinhas-fotos");
+        let indiceFoto = 0;
+        const imgFoto = document.getElementById("foto-atual");
+        const bolinhasFotos = document.getElementById("bolinhas-fotos");
 
-    function mostrarFoto(index) {
-      indiceFoto = index;
-      imgFoto.src = fotos[indiceFoto];
-      atualizarBolinhas(fotos, indiceFoto, bolinhasFotos, mostrarFoto);
-    }
+        function mostrarFoto(index) {
+            indiceFoto = index;
+            imgFoto.src = fotos[indiceFoto];
+            atualizarBolinhas(fotos, indiceFoto, bolinhasFotos, mostrarFoto);
+        }
 
-    function navegarFoto(direcao) {
-      indiceFoto = (indiceFoto + direcao + fotos.length) % fotos.length;
-      mostrarFoto(indiceFoto);
-    }
+        function navegarFoto(direcao) {
+            indiceFoto = (indiceFoto + direcao + fotos.length) % fotos.length;
+            mostrarFoto(indiceFoto);
+        }
 
-    // ======= 4. Função Genérica para Atualizar Bolinhas =======
-    function atualizarBolinhas(lista, indiceAtual, container, callback) {
-      container.innerHTML = "";
-      lista.forEach((_, index) => {
-        const bolinha = document.createElement("div");
-        bolinha.className = "bolinha" + (index === indiceAtual ? " ativa" : "");
-        bolinha.onclick = () => callback(index);
-        container.appendChild(bolinha);
-      });
-    }
+        // ======= 4. Função Genérica para Atualizar Bolinhas =======
+        function atualizarBolinhas(lista, indiceAtual, container, callback) {
+            container.innerHTML = "";
+            lista.forEach((_, index) => {
+                const bolinha = document.createElement("div");
+                bolinha.className = "bolinha" + (index === indiceAtual ? " ativa" : "");
+                bolinha.onclick = () => callback(index);
+                container.appendChild(bolinha);
+            });
+        }
 
-    // ======= 5. Inicialização =======
-    mostrarMensagem(indiceMensagem);
-    mostrarFoto(indiceFoto);
-  </script>
+        // ======= 5. Inicialização =======
+        mostrarMensagem(indiceMensagem);
+        mostrarFoto(indiceFoto);
+    </script>
 </body>
 
 </html>
