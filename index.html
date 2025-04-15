@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Nosso Amor | Ana & Bruna</title>
+
+  <!-- Estilos principais -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Cabeçalho com título e contador de tempo juntos -->
+  <header>
+    <h1>Amô</h1>
+    <h2>Ana Paula Liick ❤️ Bruna Maria Silveira Piveta</h2>
+    <div class="contador" id="contador"></div>
+  </header>
+
+  <!-- Carrossel de Mensagens de Amor -->
+  <section class="mensagem">
+    <div class="carrossel">
+      <!-- Setas para navegar entre mensagens -->
+      <div class="setas">
+        <div class="seta" onclick="navegarMensagem(-1)">&#10094;</div>
+        <div class="seta" onclick="navegarMensagem(1)">&#10095;</div>
+      </div>
+      <!-- Texto da mensagem atual -->
+      <p id="mensagem-texto"></p>
+      <!-- Bolinhas para navegação direta -->
+      <div class="bolinhas" id="bolinhas-mensagem"></div>
+    </div>
+  </section>
+
+  <!-- Carrossel de Fotos -->
+  <section class="fotos-carrossel">
+    <div class="setas">
+      <div class="seta" onclick="navegarFoto(-1)">&#10094;</div>
+      <div class="seta" onclick="navegarFoto(1)">&#10095;</div>
+    </div>
+    <div class="foto-container">
+      <img id="foto-atual" src="foto1.jpeg" alt="Foto de Ana e Bruna" />
+    </div>
+    <div class="bolinhas" id="bolinhas-fotos"></div>
+  </section>
+
+  <!-- Playlist de música compartilhada no Spotify -->
+  <section class="spotify">
+    <iframe style="border-radius:12px"
+      src="https://open.spotify.com/embed/playlist/2LnQq8lEUkYiVMQLVGH7VL?utm_source=generator" width="100%"
+      height="380" frameborder="0" allowfullscreen=""
+      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" loading="lazy"></iframe>
+  </section>
+
+  <!-- Rodapé de crédito -->
+  <footer>
+    Feito com amor 💗 por Ana
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // ======= 1. Contador de Tempo Juntas =======
+    const dataInicio = new Date("2025-02-22T00:00:00");
+
+    function atualizarContador() {
+      const agora = new Date();
+      let anos = agora.getFullYear() - dataInicio.getFullYear();
+      let meses = agora.getMonth() - dataInicio.getMonth();
+      let dias = agora.getDate() - dataInicio.getDate();
+
+      // Ajuste para meses/dias negativos
+      if (dias < 0) {
+        meses--;
+        const ultimoDiaAnterior = new Date(agora.getFullYear(), agora.getMonth(), 0).getDate();
+        dias += ultimoDiaAnterior;
+      }
+
+      if (meses < 0) {
+        anos--;
+        meses += 12;
+      }
+
+      document.getElementById("contador").innerText =
+        `Estamos juntas há ${anos} ano(s), ${meses} mês(es), ${dias} dia(s) 💕`;
+    }
+
+    setInterval(atualizarContador, 1000);
+    atualizarContador();
+
+    // ======= 2. Carrossel de Mensagens =======
+    const mensagens = [
+      "Nosso amor é feito de momentos simples, sorrisos sinceros e abraços que falam mais que palavras. Cada segundo ao seu lado faz tudo valer a pena. Que esse tempo só continue crescendo, assim como o nosso amô. 💞",
+      "Te amo mais do que palavras podem dizer. Você é meu lar, meu mundo, meu tudo. 💖",
+      "A cada dia que passa, tenho mais certeza que você é o amor da minha vida. 🌟",
+      // Adicione novas mensagens aqui
+    ];
+
+    let indiceMensagem = 0;
+    const textoMensagem = document.getElementById("mensagem-texto");
+    const bolinhasMensagem = document.getElementById("bolinhas-mensagem");
+
+    function mostrarMensagem(index) {
+      indiceMensagem = index;
+      textoMensagem.innerText = mensagens[indiceMensagem];
+      atualizarBolinhas(mensagens, indiceMensagem, bolinhasMensagem, mostrarMensagem);
+    }
+
+    function navegarMensagem(direcao) {
+      indiceMensagem = (indiceMensagem + direcao + mensagens.length) % mensagens.length;
+      mostrarMensagem(indiceMensagem);
+    }
+
+    // ======= 3. Carrossel de Fotos =======
+    const fotos = [
+      "foto1.jpeg",
+      "foto2.jpeg",
+      "foto3.jpeg",
+      // Adicione novas fotos aqui
+    ];
+
+    let indiceFoto = 0;
+    const imgFoto = document.getElementById("foto-atual");
+    const bolinhasFotos = document.getElementById("bolinhas-fotos");
+
+    function mostrarFoto(index) {
+      indiceFoto = index;
+      imgFoto.src = fotos[indiceFoto];
+      atualizarBolinhas(fotos, indiceFoto, bolinhasFotos, mostrarFoto);
+    }
+
+    function navegarFoto(direcao) {
+      indiceFoto = (indiceFoto + direcao + fotos.length) % fotos.length;
+      mostrarFoto(indiceFoto);
+    }
+
+    // ======= 4. Função Genérica para Atualizar Bolinhas =======
+    function atualizarBolinhas(lista, indiceAtual, container, callback) {
+      container.innerHTML = "";
+      lista.forEach((_, index) => {
+        const bolinha = document.createElement("div");
+        bolinha.className = "bolinha" + (index === indiceAtual ? " ativa" : "");
+        bolinha.onclick = () => callback(index);
+        container.appendChild(bolinha);
+      });
+    }
+
+    // ======= 5. Inicialização =======
+    mostrarMensagem(indiceMensagem);
+    mostrarFoto(indiceFoto);
+  </script>
+</body>
+
+</html>
