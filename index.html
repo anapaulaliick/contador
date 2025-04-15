@@ -10,6 +10,9 @@
 </head>
 
 <body>
+    <!-- Canvas para os fogos -->
+    <canvas id="fogos-canvas"></canvas>
+
     <!-- Cabeçalho com título e contador de tempo juntos -->
     <header>
         <h1>Amô</h1>
@@ -40,7 +43,7 @@
             <div class="titulo-fotos">Fotos Preferidas</div>
             <div class="seta" onclick="navegarFoto(1)">&#10095;</div>
         </div>
-        
+
         <div class="foto-container">
             <img id="foto-atual" src="foto1.jpeg" alt="Foto de Ana e Bruna" />
         </div>
@@ -157,6 +160,78 @@
                 bolinha.onclick = () => callback(index);
                 container.appendChild(bolinha);
             });
+        }
+
+        // Fogos de artifício simples para celebrar cada mêsversário 🎇
+        function iniciarFogos() {
+            const canvas = document.getElementById("fogos-canvas");
+            const ctx = canvas.getContext("2d");
+            let particles = [];
+
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            function criarParticula(x, y) {
+                const cores = ["#ff4da6", "#ff66cc", "#d63384", "#ff99cc", "#ffd6e6"];
+                for (let i = 0; i < 100; i++) {
+                    particles.push({
+                        x,
+                        y,
+                        radius: Math.random() * 3 + 1,
+                        color: cores[Math.floor(Math.random() * cores.length)],
+                        angle: Math.random() * 2 * Math.PI,
+                        speed: Math.random() * 4 + 1,
+                        alpha: 1
+                    });
+                }
+            }
+
+            function desenharParticulas() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach((p, index) => {
+                    const vx = Math.cos(p.angle) * p.speed;
+                    const vy = Math.sin(p.angle) * p.speed;
+                    p.x += vx;
+                    p.y += vy;
+                    p.alpha -= 0.01;
+
+                    if (p.alpha <= 0) particles.splice(index, 1);
+
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.radius, 0, 2 * Math.PI);
+                    ctx.fillStyle = `rgba(${hexToRgb(p.color)}, ${p.alpha})`;
+                    ctx.fill();
+                });
+
+                requestAnimationFrame(desenharParticulas);
+            }
+
+            function hexToRgb(hex) {
+                hex = hex.replace("#", "");
+                const bigint = parseInt(hex, 16);
+                return [
+                    (bigint >> 16) & 255,
+                    (bigint >> 8) & 255,
+                    bigint & 255
+                ].join(", ");
+            }
+
+            // Disparar fogos aleatórios
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    const x = Math.random() * canvas.width;
+                    const y = Math.random() * canvas.height * 0.5;
+                    criarParticula(x, y);
+                }, i * 600);
+            }
+
+            desenharParticulas();
+        }
+
+        // Checar se é dia 22
+        const hoje = new Date();
+        if (hoje.getDate() === 22) {
+            iniciarFogos();
         }
 
         // ======= 5. Inicialização =======
