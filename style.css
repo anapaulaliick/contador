@@ -491,3 +491,20 @@ footer {
     font-size: 0.85rem;
   }
 }
+.autor {
+  font-size: 1.1rem;
+  font-style: italic; /* Adiciona um estilo itálico para destacar */
+  color: #d63384; /* Cor do autor, um tom mais vibrante para contraste */
+  text-align: left; /* Alinhamento à esquerda para dar destaque */
+  margin-top: 10px; /* Um pequeno espaçamento acima */
+  margin-bottom: 20px; /* Espaçamento inferior para separar do conteúdo abaixo */
+  padding: 5px 0; /* Espaçamento interno para um toque mais suave */
+  border-left: 4px solid #d63384; /* Uma linha de destaque à esquerda */
+  padding-left: 15px; /* Espaçamento à esquerda para deixar a linha visível */
+}
+
+.autor:hover {
+  color: #ff69b4; /* Um tom mais suave ao passar o mouse */
+  cursor: pointer; /* Cursor de ponteiro para indicar interatividade */
+  transition: color 0.3s ease; /* Transição suave da cor */
+}
